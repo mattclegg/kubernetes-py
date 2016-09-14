@@ -17,6 +17,7 @@ class BaseUrls(object):
         self.urls = dict()
         self.urls['Deployment'] = '/apis/extensions/{0}/namespaces/{1}/deployments'.format(extensions_api_version, namespace)
         self.urls['Pod'] = '/api/{0}/namespaces/{1}/pods'.format(api_version, namespace)
+        self.urls['Node'] = '/api/{0}/nodes'.format(api_version)
         self.urls['Namespace'] = '/api/{0}/namespaces'.format(api_version)
         self.urls['ReplicaSet'] = '/apis/extensions/{0}/namespaces/{1}/replicasets'.format(extensions_api_version, namespace)
         self.urls['ReplicationController'] = '/api/{0}/namespaces/{1}/replicationcontrollers'.format(api_version, namespace)
