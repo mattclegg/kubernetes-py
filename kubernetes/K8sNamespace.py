@@ -10,6 +10,9 @@
 from kubernetes.K8sObject import K8sObject
 from kubernetes.models.v1.Namespace import Namespace
 
+from kubernetes.models.v1.BaseUrls import BaseUrls
+from kubernetes.models.v1.Deployment import Deployment, API_VERSION as Deployment_API_VERSION
+
 
 class K8sNamespace(K8sObject):
 
@@ -22,3 +25,13 @@ class K8sNamespace(K8sObject):
             config=config, name=name, obj_type='Namespace')
 
         self.model = Namespace()
+
+
+    def get_deployments(self, namespace):
+
+        state = self.request(method='GET', url=BaseUrls(
+            api_version=Deployment_API_VERSION,
+            namespace=namespace
+        ).get_base_url(object_type='Deployment'))
+
+        return state.get('data', dict()).get('items', list())
